@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gynstones - Hadassah Ein Kerem</title>
+    <title>GynStones - הדסה עין כרם</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             margin: 0;
             padding: 0;
@@ -14,6 +14,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            direction: rtl;
         }
         
         .container {
@@ -39,7 +40,7 @@
             margin-bottom: 30px;
         }
         
-        input[type="password"] {
+        input[type="text"] {
             width: 100%;
             padding: 15px;
             border: 2px solid #ddd;
@@ -47,9 +48,10 @@
             font-size: 16px;
             margin-bottom: 20px;
             box-sizing: border-box;
+            text-align: center;
         }
         
-        input[type="password"]:focus {
+        input[type="text"]:focus {
             outline: none;
             border-color: #667eea;
         }
@@ -79,15 +81,15 @@
 <body>
     <div class="container">
         <div class="logo">GynStones</div>
-        <div class="hospital">Hadassah Ein Kerem</div>
+        <div class="hospital">הדסה עין כרם</div>
         
-        <p>Please enter the access password:</p>
+        <p>אנא הכניסו את הסיסמה:</p>
         
-        <input type="text" id="passwordInput" placeholder="Enter password" maxlength="10">
-        <button onclick="checkPassword()">Access Evaluation System</button>
+        <input type="text" id="passwordInput" placeholder="הכניסו סיסמה" maxlength="10">
+        <button onclick="checkPassword()">כניסה למערכת הערכות</button>
         
         <div class="error" id="errorMessage">
-            Incorrect password. Please try again.
+            סיסמה שגויה. אנא נסו שוב.
         </div>
     </div>
 
