@@ -1,17 +1,136 @@
 <!DOCTYPE html>
-<html lang="en">
+<html dir="rtl" lang="he">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gynstones - Contact</title>
-    <script>
-        // Redirect to your second Google Form
-        // Replace the URL below with your actual Google Form URL
-        window.location.href = "https://docs.google.com/forms/d/e/1FAIpQLSfO4i1AZY8RSIuATewqaJDkkrQTkBSpq_NkStoiXLtamRhZNA/viewform?usp=header";
-    </script>
+    <title>GynStones Scopus - הגשת הערכה</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+        h1 {
+            color: #2c5282;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #4a5568;
+            font-weight: bold;
+        }
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4299e1;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #3182ce;
+        }
+        .error {
+            color: #e53e3e;
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+        }
+        #formContainer {
+            display: none;
+        }
+        iframe {
+            width: 100%;
+            min-height: 1000px;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-    <p>Redirecting to contact form...</p>
-    <p>If you're not redirected automatically, <a href="https://docs.google.com/forms/d/e/1FAIpQLSfO4i1AZY8RSIuATewqaJDkkrQTkBSpq_NkStoiXLtamRhZNA/viewform?usp=header">click here</a>.</p>
+    <div class="container">
+        <div id="loginContainer">
+            <h1>GynStones Scopus</h1>
+            <div class="form-group">
+                <label for="password">סיסמה:</label>
+                <input type="password" id="password" placeholder="הכנס סיסמה">
+            </div>
+            <button onclick="checkPassword()">כניסה</button>
+            <div class="error" id="error">סיסמה שגויה</div>
+        </div>
+        
+        <div id="formContainer">
+            <h1>הגשת בקשה להערכה</h1>
+            <iframe id="googleForm" src=""></iframe>
+        </div>
+    </div>
+
+    <script>
+        // Replace with your actual Google Form URL
+        const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfO4i1AZY8RSIuATewqaJDkkrQTkBSpq_NkStoiXLtamRhZNA/viewform?usp=header';
+        
+        // Replace with your actual password
+        const CORRECT_PASSWORD = '1934';
+        
+        function checkPassword() {
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('error');
+            
+            if (password === CORRECT_PASSWORD) {
+                document.getElementById('loginContainer').style.display = 'none';
+                document.getElementById('formContainer').style.display = 'block';
+                document.getElementById('googleForm').src = FORM_URL;
+                
+                sessionStorage.setItem('scopusAuth', 'true');
+            } else {
+                errorDiv.style.display = 'block';
+                setTimeout(() => {
+                    errorDiv.style.display = 'none';
+                }, 3000);
+            }
+        }
+        
+        if (sessionStorage.getItem('scopusAuth') === 'true') {
+            document.getElementById('loginContainer').style.display = 'none';
+            document.getElementById('formContainer').style.display = 'block';
+            document.getElementById('googleForm').src = FORM_URL;
+        }
+        
+        document.getElementById('password').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+    </script>
 </body>
 </html>
