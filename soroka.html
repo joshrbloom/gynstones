@@ -1,1 +1,124 @@
-
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GynStones -סורוקה </title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            direction: rtl;
+        }
+        
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+        
+        .logo {
+            color: #667eea;
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .hospital {
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        button {
+            background: #667eea;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        button:hover {
+            background: #5a67d8;
+        }
+        
+        .error {
+            color: #e53e3e;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">GynStones</div>
+        <div class="hospital">הדסה הר הצופים</div>
+        
+        <p>אנא הכניסו את הסיסמה:</p>
+        
+        <input type="text" id="passwordInput" placeholder="הכניסו סיסמה" maxlength="10">
+        <button onclick="checkPassword()">כניסה למערכת הערכות</button>
+        
+        <div class="error" id="errorMessage">
+            סיסמה שגויה. אנא נסו שוב.
+        </div>
+    </div>
+    <script>
+        function checkPassword() {
+            const password = document.getElementById('passwordInput').value;
+            const errorMessage = document.getElementById('errorMessage');
+            
+            if (password === '1959') {
+                // Correct password - redirect to the Google Form
+                window.location.href = "https://docs.google.com/forms/d/e/1FAIpQLSfo6YB98t8dbaW8ic0uuGsA34mQvcHj2_27EwoslchqpdSBMQ/viewform?usp=header";
+            } else {
+                // Wrong password - show error
+                errorMessage.style.display = 'block';
+                document.getElementById('passwordInput').value = '';
+                document.getElementById('passwordInput').focus();
+            }
+        }
+        
+        // Allow Enter key to submit
+        document.getElementById('passwordInput').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                checkPassword();
+            }
+        });
+        
+        // Focus on password input when page loads
+        window.onload = function() {
+            document.getElementById('passwordInput').focus();
+        };
+    </script>
+</body>
+</html>
